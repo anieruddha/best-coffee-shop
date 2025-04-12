@@ -16,6 +16,6 @@ class CoffeeOrderWorkflow:
 	@workflow.run
 	async def run(self, order: CoffeeOrder):
 		workflow.logger.info("CoffeeOrderWorkflow : we soon be serving coffee.. Order : {0}".format(order))
-		result = await workflow.execute_activity("BillCalculationActivity",  order, task_queue=TASK_QUEUE, start_to_close_timeout=timedelta(seconds=15))
+		result = await workflow.execute_activity("BillCalculationActivity",  order, task_queue='payment-service', start_to_close_timeout=timedelta(seconds=15))
 
 		return result
