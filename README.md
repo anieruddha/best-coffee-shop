@@ -23,5 +23,7 @@ Check related blog posts for more information.
 
 [Brewing Backend Workflows: Setting Up Payment with Temporal Activities](https://anieruddha.hashnode.dev/temporal-tutorial-first-activity)
 
+[Brewing Coffee : Setting up remaining Activities](https://anieruddha.hashnode.dev/brewing-coffee-setting-up-remaining-activities)
+
 #### Setup
 Run `docker-compose up` to run all containers.
