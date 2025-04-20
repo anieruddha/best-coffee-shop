@@ -1,5 +1,6 @@
 from temporalio import activity
 from dataclasses import dataclass
+from redis_msg_bus import notify_request_payment, notify_coffee_ready
 
 @dataclass
 class OrderBill:
@@ -13,10 +14,8 @@ class BrewedCoffee:
 
 @activity.defn(name='RequestPaymentActivity')
 async def request_payment(bill: OrderBill) :
-    activity.logger.info("Hi please pay {0} to proceed".format(bill.amount))
+    await notify_request_payment(bill.order_number)
 
 @activity.defn(name='ServeCoffeeActivity')
 async def serve_coffee(coffee: BrewedCoffee) :
-    activity.logger.info("Thank you, enjoy your cofee {0} ".format(coffee))
-
-
+    await notify_coffee_ready(coffee.order_number)

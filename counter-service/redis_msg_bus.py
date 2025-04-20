@@ -1,4 +1,4 @@
-from redis import StrictRedis
+from redis.asyncio import Redis
 import os
 
 REQ_PAYMENT = "reqPayment"
@@ -14,24 +14,24 @@ EVENT_MESSAGES = {
 redis_host = os.getenv('REDIS_HOST', 'localhost')
 redis_port = os.getenv('REDIS_PORT', 6379)
 
-redis_client = StrictRedis(host=redis_host, port=redis_port, db=0)
+redis_client = Redis(host=redis_host, port=redis_port, db=0)
 
-def notify_request_payment(order_number: str):
-    redis_client.publish(order_number, REQ_PAYMENT)
+async def notify_request_payment(order_number: str):
+    await redis_client.publish(order_number, REQ_PAYMENT)
 
-def notify_coffee_ready(order_number: str):
-    redis_client.publish(order_number, COFFEE_READY)
+async def notify_coffee_ready(order_number: str):
+    await redis_client.publish(order_number, COFFEE_READY)
 
 async def order_updates_channel(order_number: str):
     pubsub = redis_client.pubsub()
-    pubsub.subscribe(order_number)
+    await pubsub.subscribe(order_number)
 
     yield {
         "event": ORDER_RECEIVED,
         "data": EVENT_MESSAGES.get(ORDER_RECEIVED)
     }
 
-    for message in pubsub.listen():
+    async for message in pubsub.listen():
         event_key = None
         if message['type'] == 'message':
             cache_key = message.get('data')
@@ -40,6 +40,6 @@ async def order_updates_channel(order_number: str):
                 "event": event_key,
                 "data": EVENT_MESSAGES.get(event_key)
             }
-
         if event_key == COFFEE_READY:
+            await pubsub.unsubscribe(order_number)
             break
