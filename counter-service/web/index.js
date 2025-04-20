@@ -22,11 +22,13 @@ async function sseHandler(event_source){
     eventSource.addEventListener("coffeeReady", (event) => {
         showSuccessMessage(event.data);
         eventSource.close();
+        clearForm();
     });
 
     eventSource.onerror = (event) => {
         showErrorMessage("Sorry - we have some errors processing your coffee order");
-        eventSource.close();
+        eventSource.close();;
+        clearForm()
     }
 }
 
@@ -57,6 +59,19 @@ async function showWaitingMessage(str_message){
 
 function disableOrderForm(){
     document.querySelectorAll('.order-form *').forEach(el => el.disabled = true);
+}
+
+function clearForm(){
+   setTimeout(() => {
+        const name = document.getElementById("name");
+        name.value = '';
+        name.disabled = false;
+
+        const element = document.getElementById('msg-container');
+        element.innerHTML = '';
+        element.classList.remove("waiting", "show", "error", "success");
+        element.classList.add("hide");
+   }, 5000);
 }
 
 async function orderCoffee() {
