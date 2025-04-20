@@ -5,17 +5,16 @@ from starlette.routing import Route, Mount
 from starlette.staticfiles import StaticFiles
 from sse_starlette.sse import EventSourceResponse, ServerSentEvent
 from redis_msg_bus import order_updates_channel
-from config import DEFAULT_WEB_APP_PORT
+from config import WEB_APP_PORT
 import os
 import pathlib
 
 web_directory = os.path.join(pathlib.Path(__file__).parent.resolve().absolute(), "web")
-app_port = os.getenv('WEB_APP_PORT', DEFAULT_WEB_APP_PORT)
 
 templates = Jinja2Templates(directory=web_directory)
 
 async def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "WEB_APP_PORT":app_port})
+    return templates.TemplateResponse("index.html", {"request": request, "WEB_APP_PORT":WEB_APP_PORT})
 
 async def order(request: Request):
     order_data = await request.json()
