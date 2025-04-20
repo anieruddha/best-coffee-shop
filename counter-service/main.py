@@ -1,43 +1,26 @@
-import asyncio
-import uvicorn
-from temporalio.worker import Worker
-from temporalio.client import Client
-from activity import request_payment, serve_coffee
-from config import TEMPORAL_ADDRESS, TASK_QUEUE, WEB_APP_PORT
-from starlette.applications import Starlette
-from starlette.middleware.cors import CORSMiddleware
-from webapp import routes
+import multiprocessing
+from webapp import run_app_process
+from worker import run_worker_process
 
-async def run_worker():
-    print(TEMPORAL_ADDRESS)
-    client = await Client.connect(TEMPORAL_ADDRESS)
-    worker = Worker(
-        client,
-        task_queue=TASK_QUEUE,
-        activities=[request_payment, serve_coffee],
-    )
-    await worker.run()
+def main():
+    # Create separate processes for worker and app
+    worker_process = multiprocessing.Process(target=run_worker_process)
+    app_process = multiprocessing.Process(target=run_app_process)
 
+    # Start both processes
+    worker_process.start()
+    app_process.start()
 
-def configure_app():
-    app = Starlette(routes=routes)
-    return CORSMiddleware(
-        app=app,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-        expose_headers=["*"]
-    )
-
-async def main():
-    config = uvicorn.Config(configure_app(), host="0.0.0.0", port=int(WEB_APP_PORT), log_level="info")
-    server = uvicorn.Server(config)
-    worker_task = asyncio.create_task(run_worker())
-
-    await server.serve()
-    await worker_task
-
+    # Wait for both processes to complete
+    try:
+        worker_process.join()
+        app_process.join()
+    except:
+        print("Main process interrupted. Terminating child processes...")
+        worker_process.terminate()
+        app_process.terminate()
+        worker_process.join()
+        app_process.join()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
