@@ -38,7 +38,20 @@ services:
       - best-coffee-network
     ports:
       - 8080:8080
-      
+  orchestrator-service:
+    container_name: orchestrator-service
+    image: python:3
+    depends_on:
+      - temporal
+    volumes:
+      - ./orchestrator-service:/app
+      - ./requirements.txt:/requirements.txt
+      - ./init.sh:/init.sh
+    entrypoint: sh -c "chmod -R 755 /app && chmod -R 755 /init.sh && sh /init.sh"
+    networks:
+      - best-coffee-network
+
+    
 networks:
   best-coffee-network:
     driver: bridge
