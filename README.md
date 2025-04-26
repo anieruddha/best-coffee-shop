@@ -20,3 +20,7 @@ We added orchestrator-service with workflow `CoffeeOrderWorkflow` .  Check relat
 
 #### Setup
 Run `docker-compose up` to create temporal container
+
+#### Diagram
+
+![orchestrator-setup.png](assets/orchestrator-setup.png)
