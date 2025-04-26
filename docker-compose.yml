@@ -50,6 +50,18 @@ services:
     entrypoint: sh -c "chmod -R 755 /app && chmod -R 755 /init.sh && sh /init.sh"
     networks:
       - best-coffee-network
+  payment-service:
+    container_name: payment-service
+    image: python:3
+    depends_on:
+      - temporal
+    volumes:
+      - ./payment-service:/app
+      - ./requirements.txt:/requirements.txt
+      - ./init.sh:/init.sh
+    entrypoint: sh -c "chmod -R 755 /app && chmod -R 755 /init.sh && sh /init.sh"
+    networks:
+      - best-coffee-network
 
     
 networks:
