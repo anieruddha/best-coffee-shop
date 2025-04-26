@@ -1,6 +1,8 @@
 # best-coffe-shop
 Temporal.io tutorial in python
 
+We added orchestrator-service with workflow `CoffeeOrderWorkflow` .  Check related blog posts for more information.
+
 
 #### Tech Stack :
     docker, 
@@ -11,9 +13,10 @@ Temporal.io tutorial in python
 
 
 #### 📖 Related Blog Posts
-[Brewing Backend Workflows: Setting Up Temporal for Best-Coffee-Shop](https://anieruddha.hashnode.dev/brewing-backend-workflows-setting-up-temporal-for-best-coffee-shop)
+- [Brewing Backend Workflows: Setting Up Temporal for Best-Coffee-Shop](https://anieruddha.hashnode.dev/brewing-backend-workflows-setting-up-temporal-for-best-coffee-shop)
 
-This is initial setup - preaprate temporal-server to run our best-coffee-shop order workflow
+- [Brewing Backend Workflows: Your First Temporal Workflow, One Cup at a Time](https://anieruddha.hashnode.dev/temporal-workflow)
+
 
 #### Setup
 Run `docker-compose up` to create temporal container
