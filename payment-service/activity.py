@@ -12,7 +12,7 @@ class OrderBill:
     order_number: str
     amount: int
 
-COFFEE_UNIT_PRICE = 2000
+COFFEE_UNIT_PRICE = 200
 
 @activity.defn(name='BillCalculationActivity')
 async def calculate_payment(order: CoffeeOrder) -> OrderBill:
