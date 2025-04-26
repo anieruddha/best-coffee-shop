@@ -2,9 +2,7 @@ import asyncio
 from temporalio.worker import Worker
 from temporalio.client import Client
 from activity import calculate_payment
-
-TEMPORAL_ADDRESS = 'temporal:7233'
-TASK_QUEUE = 'best-coffee-orders'
+from temporal_config import TEMPORAL_ADDRESS, TASK_QUEUE
 
 async def main():
     print(TEMPORAL_ADDRESS)
