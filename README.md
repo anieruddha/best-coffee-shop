@@ -1,7 +1,10 @@
 # best-coffe-shop
 Temporal.io tutorial in python
 
-We added orchestrator-service with workflow `CoffeeOrderWorkflow` .  Check related blog posts for more information.
+- We added orchestrator-service with workflow `CoffeeOrderWorkflow` . 
+- `CoffeeOrderWorkflow` executes activity of type `BillCalculationActivity`  to get to know billing amount.
+
+Check related blog posts for more information.
 
 
 #### Tech Stack :
@@ -23,4 +26,4 @@ Run `docker-compose up` to create temporal container
 
 #### Diagram
 
-![orchestrator-setup.png](assets/orchestrator-setup.png)
+![payment-service-setup.png](assets/payment-service-setup.png)
