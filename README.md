@@ -20,6 +20,7 @@ Check related blog posts for more information.
 
 - [Brewing Backend Workflows: Your First Temporal Workflow, One Cup at a Time](https://anieruddha.hashnode.dev/temporal-workflow)
 
+- [Brewing Backend Workflows: Setting Up Payment with Temporal Activities](https://anieruddha.hashnode.dev/brewing-backend-workflows-setting-up-payment-with-temporal-activities)
 
 #### Setup
 Run `docker-compose up` to create temporal container
