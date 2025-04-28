@@ -11,9 +11,9 @@ Temporal.io tutorial in python
 
 
 #### 📖 Related Blog Posts
-[Brewing Backend Workflows: Setting Up Temporal for Best-Coffee-Shop](https://anieruddha.hashnode.dev/brewing-backend-workflows-setting-up-temporal-for-best-coffee-shop)
+[Brewing Coffee : Setting Up Temporal for Best-Coffee-Shop](https://anieruddha.hashnode.dev/temporal-tutorial-docker-setup)
 
 This is initial setup - preaprate temporal-server to run our best-coffee-shop order workflow
 
 #### Setup
-Run `docker-compose up` to create temporal container
+Run `docker-compose up` to create temporal & temporal-ui containers
