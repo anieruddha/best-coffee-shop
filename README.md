@@ -13,14 +13,11 @@ We added orchestrator-service with workflow `CoffeeOrderWorkflow` .  Check relat
 
 
 #### 📖 Related Blog Posts
-- [Brewing Backend Workflows: Setting Up Temporal for Best-Coffee-Shop](https://anieruddha.hashnode.dev/brewing-backend-workflows-setting-up-temporal-for-best-coffee-shop)
 
-- [Brewing Backend Workflows: Your First Temporal Workflow, One Cup at a Time](https://anieruddha.hashnode.dev/temporal-workflow)
+[Brewing Coffee : Setting Up Temporal for Best-Coffee-Shop](https://anieruddha.hashnode.dev/temporal-tutorial-docker-setup)
+
+[Brewing Coffee : First Temporal Workflow, One Cup at a Time](https://anieruddha.hashnode.dev/temporal-tutorial-first-workflow)
 
 
 #### Setup
-Run `docker-compose up` to create temporal container
-
-#### Diagram
-
-![orchestrator-setup.png](assets/orchestrator-setup.png)
+Run `docker-compose up` to create temporal & temporal-ui containers
