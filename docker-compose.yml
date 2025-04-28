@@ -63,8 +63,43 @@ services:
     entrypoint: sh -c "chmod -R 755 /app && chmod -R 755 /init.sh && sh /init.sh"
     networks:
       - best-coffee-network
+  inventory-service:
+    container_name: inventory-service
+    image: python:3
+    depends_on:
+      - temporal
+    volumes:
+      - ./inventory-service:/app
+      - ./requirements.txt:/requirements.txt
+      - ./init.sh:/init.sh
+    entrypoint: sh -c "chmod -R 755 /app && chmod -R 755 /init.sh && sh /init.sh"
+    networks:
+      - best-coffee-network
+  brewing-service:
+    container_name: brewing-service
+    image: python:3
+    depends_on:
+      - temporal
+    volumes:
+      - ./brewing-service:/app
+      - ./requirements.txt:/requirements.txt
+      - ./init.sh:/init.sh
+    entrypoint: sh -c "chmod -R 755 /app && chmod -R 755 /init.sh && sh /init.sh"
+    networks:
+      - best-coffee-network
+  counter-service:
+    container_name: counter-service
+    image: python:3
+    depends_on:
+      - temporal
+    volumes:
+      - ./counter-service:/app
+      - ./requirements.txt:/requirements.txt
+      - ./init.sh:/init.sh
+    entrypoint: sh -c "chmod -R 755 /app && chmod -R 755 /init.sh && sh /init.sh"
+    networks:
+      - best-coffee-network
 
-    
 networks:
   best-coffee-network:
     driver: bridge
