@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Best Coffee Shop - Order</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+  <input type="hidden" id="web_server_port" value="{{ WEB_APP_PORT }}">
+  <div class="split-left">
+    <img src="/static/images/best-coffee-shop.png" alt="Best Coffee Shop">
+  </div>
+  <div class="split-right">
+    <div class="order-form">
+      <h2>Place Your Order Here</h2>
+      <form>
+        <select required>
+          <option selected>Selected - Our Best Coffee</option>
+        </select>
+        <input type="text" placeholder="Your Name please" id="name" required>
+        <input type="number" placeholder="How many Coffee Cups you want" id="quantity" min="1" max="5" step="1" required>
+        <button type="button" onclick="orderCoffee()">Order Now</button>
+      </form>
+    </div>
+  </div>
+  <div id="msg-container" class="msg-container hide"></div>
+<script src="/static/index.js"></script>
+</body>
+</html>

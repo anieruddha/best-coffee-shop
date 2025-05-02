@@ -1,0 +1,6 @@
+temporalio
+uvicorn
+starlette
+sse-starlette
+jinja2
+redis

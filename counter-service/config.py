@@ -1,0 +1,4 @@
+TEMPORAL_ADDRESS = 'localhost:7233'
+TASK_QUEUE = 'counter-service'
+
+DEFAULT_WEB_APP_PORT = 9090
