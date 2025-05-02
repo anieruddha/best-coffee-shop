@@ -8,7 +8,7 @@ services:
     networks:
       - best-coffee-network
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - /var/lib/postgresql/data
   temporal:
@@ -25,7 +25,7 @@ services:
     networks:
       - best-coffee-network
     ports:
-      - 7233:7233
+      - "7233:7233"
   temporal-ui:
     container_name: temporal-ui
     depends_on:
@@ -38,7 +38,14 @@ services:
     networks:
       - best-coffee-network
     ports:
-      - 8080:8080
+      - "8080:8080"
+  redis:
+    container_name: redis
+    image: redis:7.4.3-alpine
+    networks:
+      - best-coffee-network
+    ports:
+      - "6379:6379"
   orchestrator-service:
     container_name: orchestrator-service
     image: python:3
@@ -92,13 +99,20 @@ services:
     image: python:3
     depends_on:
       - temporal
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - WEB_APP_PORT=9090
     volumes:
       - ./counter-service:/app
-      - ./requirements.txt:/requirements.txt
+      - ./counter-service/requirements.txt:/requirements.txt
       - ./init.sh:/init.sh
     entrypoint: sh -c "chmod -R 755 /app && chmod -R 755 /init.sh && sh /init.sh"
     networks:
       - best-coffee-network
+    ports:
+      - "9090:9090"
 
 networks:
   best-coffee-network:

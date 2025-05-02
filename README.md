@@ -26,4 +26,6 @@ Check related blog posts for more information.
 [Brewing Coffee : Setting up remaining Activities](https://anieruddha.hashnode.dev/brewing-coffee-setting-up-remaining-activities)
 
 #### Setup
-Run `docker-compose up` to run all containers.
+1. Run `docker-compose up` to run all containers.
+2. Go to `http://localhost:9090` to place order
+3. To Connect redis vi redis-cli fire `redis-cli`. Redis will be running on `127.0.0.1:6379` 
