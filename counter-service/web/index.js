@@ -24,7 +24,6 @@ async function sseHandler(event_source){
         eventSource.close();
     });
 
-
     eventSource.onerror = (event) => {
         showErrorMessage("Sorry - we have some errors processing your coffee order");
         eventSource.close();
@@ -75,6 +74,6 @@ async function orderCoffee() {
         disableOrderForm();
         sseHandler(data.event_source);
     }catch(err){
-        showSuccessMessage("Apologises - we cant accept your order rigth now");
+        showErrorMessage("Apologises - we cant accept your order rigth now");
     }
 }
