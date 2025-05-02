@@ -120,7 +120,8 @@
 
 .msg-container{
   position: absolute;
-  top: 20px;
+  top: 40%;
+  left: 25%;
   background-color: #fff7eb;
   color: #5b3a29;
   font-weight: 600;
